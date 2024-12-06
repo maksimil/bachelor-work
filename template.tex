@@ -1,0 +1,189 @@
+\documentclass[a4paper]{article}
+
+% language
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainfont{Times New Roman}
+\setmonofont{DejaVu Sans Mono}
+
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+% \defaultfontfeatures{Ligatures = TeX}
+% 
+% \setmainlanguage[babelshorthands=true]{russian} 
+ 
+\setmainfont{cmun}[
+  Extension=.otf,
+  UprightFont=*rm,
+  ItalicFont=*ti,
+  BoldFont=*bx,
+  BoldItalicFont=*bi,
+  SlantedFont=*sl,]
+
+\setsansfont{cmun}[
+  Extension=.otf,
+  UprightFont=*ss,
+  ItalicFont=*si,
+  BoldFont=*sx,
+  BoldItalicFont=*so,]
+
+\setmonofont{cmun}[
+  Extension=.otf,
+  UprightFont=*btl,% light version
+  ItalicFont=*bto,%  light version
+  BoldFont=*tb,
+  BoldItalicFont=*tx,
+]
+
+\usepackage[14pt]{extsizes}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\frenchspacing
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    citecolor=black,
+    pagecolor=black,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=blue,
+    % pdftitle={},
+    bookmarks=true,
+    pdfpagemode=FullScreen,
+}
+\urlstyle{same}
+
+\onehalfspacing % межстрочный интервал 1.5 строки
+
+% настройки полей документа
+\usepackage[left=1.18in, top=0.79in, right=0.59in, bottom=0.79in]{geometry} 
+
+\newcommand\maketitlepages[1]{
+ % Титульный лист
+\begin{center}
+\setstretch{1.5}
+
+\textsc{Санкт-Петербургский государственный университет}\\[1cm]
+
+\textbf{КОСТЕРОВ МАКСИМ АНДРЕЕВИЧ}
+
+\textbf{Отчет по производственной практике (научно-исследовательской работе)}\\[1cm]
+
+\large{\textbf{#1}}\\[3cm]
+
+\small{Уровень образования бакалавр}\\[0.5cm]
+
+\small{Направление 01.03.02 \guillemotleft{}Прикладная математика,
+    фундаментальная информатика и программирование\guillemotright{}}\\[1cm]
+\end{center}
+
+{\small
+
+{\setstretch{1}
+\begin{flushright}
+    Научный руководитель:\\
+    д. ф. - м. н., профессор\\
+    Котина Елена Дмитриевна
+\end{flushright}
+}
+
+\newcolumntype{C}{>{\centering\arraybackslash}p{0.3\textwidth}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}p{0.3\textwidth}}
+
+\noindent
+\begin{tabular}{|C|C|}\hline
+    Зачёт&Оценка ECTS\\\hline
+    &\\\hline
+\end{tabular}\\[0.5cm]
+
+Состав комиссии:\\[-0.3cm]
+
+\noindent
+\begin{tabular}{|L|L|L|}\hline
+     Фамилия Имя Отчество & Подпись & Расшифровка\\\hline
+     &&\\\hline
+     &&\\\hline
+     &&\\\hline
+\end{tabular}\\
+
+\begin{center}
+      Санкт-Петербруг\\[0.5cm]
+    2024 год
+\end{center}
+}
+
+\thispagestyle{empty} % Выключаем отображение номера для этой страницы
+
+\newpage
+
+\setlength{\parindent}{12.5mm}
+
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\newpage
+}
+
+\newcommand\showbib{
+    \sloppy
+    \printbibliography[heading=bibintoc]{}
+    \fussy
+}
+
+\bibliographystyle{gost-numeric}
+\usepackage[
+	natbib		= true,
+	style		= gost-numeric,
+	sorting		= nyvt,
+	backend		= biber,
+	language	= autobib,
+	autolang	= other]{biblatex}
+\addbibresource{refs.bib}
+
+\setcounter{biburlnumpenalty}{9000}
+
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\usepackage{hyphenat}
+
+\input{math.tex}
+
+\usepackage{caption, subcaption}
+\usepackage{makecell}
+
+\makeatletter
+\newcommand\my@saved@item{}
+\newcommand\mydescriptionitem{}
+\def\mydescriptionitem[#1]{%
+  \my@saved@item[{\csname phantomsection\endcsname#1}]%
+  \def\@currentlabel{\unexpanded{\unexpanded{#1}}}%
+}%
+\newenvironment{labeldesc}%
+               {%
+                  \let\my@saved@item=\@item
+                  \let\@item=\mydescriptionitem
+                  \description
+               }%
+               {\csname enddescription\endcsname}
+\makeatother
+
+
+% \usepackage{showframe}
+
+\begin{document}
+
+\input{./main.tex}
+
+\end{document}
