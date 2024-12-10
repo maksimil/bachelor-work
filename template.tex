@@ -3,6 +3,7 @@
 % language
 \usepackage{fontspec}
 \usepackage{polyglossia}
+\usepackage[norwegian=guillemets]{csquotes}
 \setmainfont{Times New Roman}
 \setmonofont{DejaVu Sans Mono}
 
@@ -62,9 +63,10 @@
 
 % настройки полей документа
 \usepackage[left=1.18in, top=0.79in, right=0.59in, bottom=0.79in]{geometry} 
+\usepackage[raggedright]{titlesec}
 
 \newcommand\maketitlepages[1]{
- % Титульный лист
+% Титульный лист
 \begin{center}
 \setstretch{1.5}
 
@@ -101,6 +103,7 @@
     &\\\hline
 \end{tabular}\\[0.5cm]
 
+\setlength{\parindent}{2mm}
 Состав комиссии:\\[-0.3cm]
 
 \noindent
@@ -140,13 +143,23 @@
 
 \bibliographystyle{gost-numeric}
 \usepackage[
-	natbib		= true,
-	style		= gost-numeric,
-	sorting		= nyvt,
-	backend		= biber,
-	language	= autobib,
-	autolang	= other]{biblatex}
+    bibstyle=gost-numeric,
+    citestyle=numeric
+]{biblatex}
 \addbibresource{refs.bib}
+
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=langid, match=russian, final]
+      \step[fieldset=presort, fieldvalue={a}]
+    }
+    \map{
+      \step[fieldsource=langid, notmatch=russian, final]
+      \step[fieldset=presort, fieldvalue={z}]
+    }
+  }
+}
 
 \setcounter{biburlnumpenalty}{9000}
 
